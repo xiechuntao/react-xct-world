@@ -5,8 +5,11 @@ import Home from './pages/Home'
 function App() {
   return (
     <div className="App">
-      <Home></Home>
-      <header className="App-header">
+      <header>
+        <img src={logo} className="App-logo" alt="logo" />
+      </header>
+      <Home />
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -19,7 +22,7 @@ function App() {
         >
           Learn React Go
         </a>
-      </header>
+      </header> */}
     </div>
   );
 }
