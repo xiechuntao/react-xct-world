@@ -5,7 +5,15 @@ export default class Home extends Component {
   render() {
     return (
       <div className="container">
-        Hello Home Page;
+        <div class="center"></div>
+        <div>Hello Home Page;</div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
     );
   }
