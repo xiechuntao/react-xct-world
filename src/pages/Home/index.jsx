@@ -6,11 +6,11 @@ export default class Home extends Component {
   render() {
     return (
       <div className="container">
-        <div className="center"></div>
-        <div>Hello Home Page;</div>
-        <div>
+        <div className="center">
           <Center />
         </div>
+        <div>Hello Home Page;</div>
+        <div></div>
         <div></div>
         <div></div>
         <div></div>
