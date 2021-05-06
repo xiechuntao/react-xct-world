@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './index.scss';
-import Center from './Center';
+import Center from './center';
 
 export default class Home extends Component {
   render() {
