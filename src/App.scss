@@ -1,43 +1,34 @@
 .App {
+  background: red;
   // 头部
-  .App-header {
+  .header {
     background-color: #282c34;
     height: 72px;
     display: flex;
     color: white;
-    .App-logo {
+    .logo {
       width: 72px;
       height: 72px;
       pointer-events: none;
       animation: App-logo-spin infinite 20s linear;
-    }
+    }    
   }
-  // 主体
-  .App-main {
+  // 主题
+  .main {
     height: calc(100vh - 72px);
     background: #eee;
   }
+ 
+
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 }
-
-
-// 默认样式，学习可用
-.App {
-  text-align: center;
-}
-
-
  
 
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import './index.scss';
+import styles from './index.scss';
 import Center from './center';
 
 export default class Home extends Component {
   render() {
     return (
-      <div className="container">
-        <div className="center">
+      <div className={styles.container}>
+        <div className={styles.center}>
           <Center />
         </div>
         <div>Hello Home Page;</div>
