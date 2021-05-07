@@ -1,5 +1,5 @@
 .container {
-  background-color: #ffff005c;
+  background-color: #0a0035;
   color: #fff;
   height: 100%;
 
@@ -12,7 +12,7 @@
     color: skyblue;
   }
   > div {
-    border: 1px solid #000;
+    border: 1px solid #fff;
     &.center {
       grid-row-start: 1;
       grid-row-end: 3;

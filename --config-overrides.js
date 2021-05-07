@@ -1,33 +1,99 @@
-/*config-overrides.js */
-const { injectBabelPlugin } = require('react-app-rewired');
-const rewireCssModules = require('react-app-rewire-css-modules');
-const path = require('path');
+const { injectBabelPlugin, getLoader } = require('react-app-rewired');
 
-function resolve(dir) {
-  return path.join(__dirname, '.', dir);
-}
+const fileLoaderMatcher = function (rule) {
+  return rule.loader && rule.loader.indexOf(`file-loader`) != -1;
+};
 
 module.exports = function override(config, env) {
-  // do stuff with the webpack config...
-
-  //启用ES7的修改器语法（babel 7）
+  // babel-plugin-import
   config = injectBabelPlugin(
-    ['@babel/plugin-proposal-decorators', { legacy: true }],
-    config
-  ); //{ "legacy": true }一定不能掉，否则报错
-
-  //按需加载UI组件
-  config = injectBabelPlugin(
-    ['import', { libraryName: 'antd-mobile', style: 'css' }],
+    [
+      'import',
+      {
+        libraryName: 'antd',
+        //style: 'css',
+        style: true, // use less for customized theme
+      },
+    ],
     config
   );
 
-  //配置别名，设置@指向src目录
-  config.resolve.alias = {
-    '@': resolve('src'),
-  };
-  //css模块化
-  config = rewireCssModules(config, env);
+  // customize theme
+  config.module.rules[1].oneOf.unshift({
+    test: /\.less$/,
+    use: [
+      require.resolve('style-loader'),
+      require.resolve('css-loader'),
+      {
+        loader: require.resolve('postcss-loader'),
+        options: {
+          // Necessary for external CSS imports to work
+          // https://github.com/facebookincubator/create-react-app/issues/2677
+          ident: 'postcss',
+          plugins: () => [
+            require('postcss-flexbugs-fixes'),
+            autoprefixer({
+              browsers: [
+                '>1%',
+                'last 4 versions',
+                'Firefox ESR',
+                'not ie < 9', // React doesn't support IE8 anyway
+              ],
+              flexbox: 'no-2009',
+            }),
+          ],
+        },
+      },
+      {
+        loader: require.resolve('less-loader'),
+        options: {
+          // theme vars, also can use theme.js instead of this.
+          modifyVars: { '@brand-primary': '#1DA57A' },
+        },
+      },
+    ],
+  });
+
+  // css-modules
+  config.module.rules[1].oneOf.unshift({
+    test: /\.css$/,
+    exclude: /node_modules|antd\.css/,
+    use: [
+      require.resolve('style-loader'),
+      {
+        loader: require.resolve('css-loader'),
+        options: {
+          modules: true,
+          importLoaders: 1,
+          localIdentName: '[local]___[hash:base64:5]',
+        },
+      },
+      {
+        loader: require.resolve('postcss-loader'),
+        options: {
+          // Necessary for external CSS imports to work
+          // https://github.com/facebookincubator/create-react-app/issues/2677
+          ident: 'postcss',
+          plugins: () => [
+            require('postcss-flexbugs-fixes'),
+            autoprefixer({
+              browsers: [
+                '>1%',
+                'last 4 versions',
+                'Firefox ESR',
+                'not ie < 9', // React doesn't support IE8 anyway
+              ],
+              flexbox: 'no-2009',
+            }),
+          ],
+        },
+      },
+    ],
+  });
+
+  // file-loader exclude
+  let l = getLoader(config.module.rules, fileLoaderMatcher);
+  l.exclude.push(/\.less$/);
 
   return config;
 };

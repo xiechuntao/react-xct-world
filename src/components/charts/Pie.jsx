@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactEcharts from 'echarts-for-react';
-import echarts from 'echarts';
+// import echarts from 'echarts';
 
 var colorList = [
   {
@@ -178,61 +178,86 @@ data.forEach((v, i) => {
 
 export default class Home extends Component {
   componentDidMount() {}
-  getOption() {
-    return {
-      series: [
-        {
-          type: 'pie',
-          radius: '60%',
-          center: ['50%', '50%'],
-          clockwise: true,
-          avoidLabelOverlap: true,
-          label: {
-            show: true,
-            position: 'outside',
-            formatter: function (params) {
-              const name = params.name;
-              const percent = params.percent + '%';
-              const index = params.dataIndex;
-              return [`{a${index}|${name}：${percent}}`, `{hr${index}|}`].join(
-                '\n'
-              );
-            },
-            rich: getRich(),
+  // getOption() {
+  //   return {
+  //     series: [
+  //       {
+  //         type: 'pie',
+  //         radius: '60%',
+  //         center: ['50%', '50%'],
+  //         clockwise: true,
+  //         avoidLabelOverlap: true,
+  //         label: {
+  //           show: true,
+  //           position: 'outside',
+  //           formatter: function (params) {
+  //             const name = params.name;
+  //             const percent = params.percent + '%';
+  //             const index = params.dataIndex;
+  //             return [`{a${index}|${name}：${percent}}`, `{hr${index}|}`].join(
+  //               '\n'
+  //             );
+  //           },
+  //           rich: getRich(),
+  //         },
+  //         itemStyle: {
+  //           normal: {
+  //             color: function (params) {
+  //               return colorList[params.dataIndex];
+  //             },
+  //           },
+  //         },
+  //         data,
+  //         roseType: 'radius',
+  //       },
+  //     ],
+  //   };
+  // }
+  option = {
+    series: [
+      {
+        type: 'pie',
+        radius: '60%',
+        center: ['50%', '50%'],
+        clockwise: true,
+        avoidLabelOverlap: true,
+        label: {
+          show: true,
+          position: 'outside',
+          formatter: function (params) {
+            const name = params.name;
+            const percent = params.percent + '%';
+            const index = params.dataIndex;
+            return [`{a${index}|${name}：${percent}}`, `{hr${index}|}`].join(
+              '\n'
+            );
           },
-          itemStyle: {
-            normal: {
-              color: function (params) {
-                return colorList[params.dataIndex];
-              },
-            },
-          },
-          data,
-          roseType: 'radius',
+          rich: getRich(),
         },
-      ],
-    };
-  }
-  /**
-   * @description 雷达图选中区域点击事件和外部显示标签点击事件
-   * @param {any} param
-   * @param {any} echarts
-   * @memberof EchartsRadar
-   */
+        itemStyle: {
+          normal: {
+            color: function (params) {
+              return colorList[params.dataIndex];
+            },
+          },
+        },
+        data,
+        roseType: 'radius',
+      },
+    ],
+  };
+
   onChartClick(param, echarts) {
     console.log(param);
+    // 测试修改
+    this.option.series[0].data.pop();
+    this.echartsEl.getEchartsInstance().setOption(this.option); // 实时改变
   }
-  /**
-   * @description 点击legend事件
-   * @param {any} param
-   * @param {any} echarts
-   * @memberof EchartsRadar
-   */
+
   onChartLegendselectchanged(param, echarts) {
     console.log(param);
   }
-  componentWillReceiveProps(nextProps) {}
-  componentWillMount() {}
+
   render() {
     let onEvents = {
       click: this.onChartClick.bind(this),
@@ -240,7 +265,10 @@ export default class Home extends Component {
     };
     return (
       <ReactEcharts
-        option={this.getOption()}
+        ref={e => {
+          this.echartsEl = e;
+        }}
+        option={this.option}
         notMerge={true}
         lazyUpdate={true}
         onEvents={onEvents}

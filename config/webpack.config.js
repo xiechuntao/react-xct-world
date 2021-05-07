@@ -467,6 +467,7 @@ module.exports = function (webpackEnv) {
             // By default we support CSS Modules with the extension .module.css
             {
               test: cssRegex,
+
               // use: [
               //   'style-loader',
               //   'css-loader?modules&localIdentName=[path][name]-[local]-[hash:5]',
@@ -477,10 +478,6 @@ module.exports = function (webpackEnv) {
                 sourceMap: isEnvProduction
                   ? shouldUseSourceMap
                   : isEnvDevelopment,
-
-                modules: {
-                  localIdentName: '[path][name]-[local]-[hash:5]',
-                },
               }),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.

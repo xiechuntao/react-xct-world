@@ -136,8 +136,7 @@ export default class Home extends Component {
   onChartLegendselectchanged(param, echarts) {
     console.log(param);
   }
-  componentWillReceiveProps(nextProps) {}
-  componentWillMount() {}
+
   render() {
     let onEvents = {
       click: this.onChartClick.bind(this),
