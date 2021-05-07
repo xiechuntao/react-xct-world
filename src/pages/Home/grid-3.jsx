@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import styles from './center.scss';
-import Map from '../../components/charts/Map.jsx';
+import Line from '../../components/charts/Line';
 
 export default class Home extends Component {
   render() {
     return (
       <div id="centerChart" className={styles.container}>
-        <Map />
+        <Line />
       </div>
     );
   }
