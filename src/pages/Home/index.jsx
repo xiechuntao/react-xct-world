@@ -6,7 +6,9 @@ import Grid2 from './grid-2';
 import Grid3 from './grid-3';
 import Grid4 from './grid-4';
 import Grid5 from './grid-5';
-import { Button } from 'antd';
+import Grid6 from './grid-6';
+import Grid7 from './grid-7';
+import Grid8 from './grid-8';
 
 export default class Home extends Component {
   render() {
@@ -31,18 +33,14 @@ export default class Home extends Component {
           <Grid5 />
         </div>
         <div>
-          <Button type="primary">Primary Button</Button>
-          <Button>Default Button</Button>
-          <Button type="dashed">Dashed Button</Button>
-          <br />
-          <Button type="text">Text Button</Button>
-          <Button type="link">Link Button</Button>
-          <Button type="text" danger>
-            Text
-          </Button>
+          <Grid6 />
         </div>
-        <div></div>
-        <div></div>
+        <div>
+          <Grid7 />
+        </div>
+        <div>
+          <Grid8 />
+        </div>
       </div>
     );
   }

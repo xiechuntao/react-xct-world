@@ -5,11 +5,7 @@ import echarts from 'echarts';
 
 export default class Home extends Component {
   componentDidMount() {}
-  /**
-   * @description 配置图表
-   * @returns
-   * @memberof EchartsRadar
-   */
+
   getOption() {
     return {
       backgroundColor: '#080b30',

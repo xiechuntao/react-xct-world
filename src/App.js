@@ -4,28 +4,36 @@ import './global.css';
 import logo from './logo.svg';
 import styles from './App.scss';
 import Home from './pages/Home';
-
+import Life from './pages/Life';
+import { Link, Redirect, BrowserRouter, Route } from 'react-router-dom';
 function App() {
   return (
-    <div className={styles.App}>
-      <header className={styles.header}>
-        <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          <img src={logo} className={styles.logo} alt="logo" />
-        </a>
-        <h2>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque
-          minima voluptates vel? Et delectus dicta voluptatum molestiae illo
-          dolor repudiandae maxime minus, facilis ex, neque dignissimos
-          provident illum quae obcaecati?
-        </h2>
-        <Button type="text" danger>
-          Text
-        </Button>
-      </header>
-      <main className={styles.main}>
-        <Home />
-      </main>
-    </div>
+    <BrowserRouter>
+      <div className={styles.App}>
+        <header className={styles.header}>
+          <a
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={logo} className={styles.logo} alt="logo" />
+          </a>
+          <div className={styles.nav}>
+            <Button type="primary">
+              <Link to="/home">首页</Link>
+            </Button>
+            <Button type="primary">
+              <Link to="/Life">生活</Link>
+            </Button>
+          </div>
+        </header>
+        <main className={styles.main}>
+          <Route path="/home" exact component={Home} />
+          <Route path="/life" exact component={Life} />
+          <Redirect to="/home" from="/" />
+        </main>
+      </div>
+    </BrowserRouter>
   );
 }
 
