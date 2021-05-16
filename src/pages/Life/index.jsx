@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './index.scss';
+import BottomBar from './BottomBar/index.jsx';
 
 export default class Life extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ export default class Life extends Component {
   }
 
   createAMap() {
-    let map = new AMap.Map('container', {
+    let map = new AMap.Map('map_container', {
       viewMode: '3D',
       pitch: 50,
       zoom: 11,
@@ -21,6 +22,11 @@ export default class Life extends Component {
   }
 
   render() {
-    return <div id="container" className={styles.container}></div>;
+    return (
+      <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+        <div id="map_container" className={styles.container}></div>
+        <BottomBar />
+      </div>
+    );
   }
 }
