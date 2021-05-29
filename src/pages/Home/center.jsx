@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './center.scss';
-import Map from '../../components/charts/Map.jsx';
+import Map from '@/components/charts/Map.jsx';
 
 export default class Home extends Component {
   render() {

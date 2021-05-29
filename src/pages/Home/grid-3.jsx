@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './center.scss';
-import Line from '../../components/charts/Line';
+import Line from '@/components/charts/Line';
 
 export default class Home extends Component {
   render() {
