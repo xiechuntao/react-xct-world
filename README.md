@@ -4,7 +4,7 @@
 
 echart @4.9.0
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was ant-design@4 with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 

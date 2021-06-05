@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import styles from './center.scss';
+// import styles from './center.scss'; ceshi
 import ReactEcharts from 'echarts-for-react';
 import echarts from 'echarts';
 const createSvg = (shadowColor, shadowBlur) => `
