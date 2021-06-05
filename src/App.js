@@ -3,6 +3,7 @@ import { Button } from 'antd';
 import './global.css';
 import logo from './logo.svg';
 import styles from './App.scss';
+import Header from './components/Header';
 import Home from './pages/Home';
 import Life from './pages/Life';
 import { Link, Redirect, BrowserRouter, Route } from 'react-router-dom';
@@ -25,6 +26,8 @@ function App() {
             <Button type="primary">
               <Link to="/Life">生活</Link>
             </Button>
+
+            <Header />
           </div>
         </header>
         <main className={styles.main}>
