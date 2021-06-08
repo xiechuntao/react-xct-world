@@ -24,7 +24,7 @@ export default class Header extends Component {
       })
       .catch(error => {
         console.log(error);
-        thissetState({
+        this.setState({
           isLoaded: false,
           error: error,
         });

@@ -10,7 +10,6 @@
 
 # production
 /build
-/react-xct-world
 
 # misc
 .DS_Store
